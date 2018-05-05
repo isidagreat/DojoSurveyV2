@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<link rel="stylesheet" type="text/css" href="{{url_for('static', filename='CSS/style.css')}}">
+	<script type="text/javascript" src="{{ url_for('static', filename='js/script.js')}}"></script>
+</head>
+<body>
+	<div id="wrapper">
+		<div class="mainForm">
+			{% with messages = get_flashed_messages() %}
+				{% if messages %}
+					{% for message in messages %}
+						<p>{{message}}</p>
+					{% endfor %}
+				{% endif %}
+			{% endwith %}
+
+			<form action='/result' method="post">
+				
+				<p>Your Name:</p> 
+				<input type="text" name="name" value="{{session['response'][0]}}">
+				 
+				 <p>Dojo Location:</p>
+				 	<select name="city" value="">
+				 	<option value="{{session['response'][2]}}"></option>
+					<option value="SJ">SJ</option>
+					</select>
+				<p>Favorite Language:</p>
+				<select name="lang">
+					<option value=""></option>
+					<option value="Python">python</option>
+				</select>	
+				
+				<p class="last">Comment(optional)<p>: 
+					<input  type="text" name="textBox" value="{{session['response'][3]}}">
+					<input type="submit" value="Submit">
+			</form>
+		</div>
+		
+	</div>
+
+</body>
+</html>
