@@ -20,6 +20,10 @@ def didplayInfo():
 	if request.form["lang"] == "":
 		flash("Must select favorite Language!")
 		return redirect("/")
+	if len(request.form["textBox"]) > 121:
+		flash("Must Be less than 120 characters")
+		return redirect("/")
+
 	else:
 		w = session["response"][0]
 		x = session["response"][2]
